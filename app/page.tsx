@@ -10,22 +10,31 @@ import Videogame from '@/models/Videogame';
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [videogames, setVideogames] = useState<Videogame[]>([]);
+  console.log("asdfasdf")
   useEffect(() => {
     const fetchVideogames = async () => {
-      const videogamesList = await fetchVideogame();
-      setVideogames(videogamesList);
+      try{
+        const videogamesList = await fetchVideogame();
+        setVideogames(videogamesList);
+        console.log(videogames)
+      }
+      catch (e: any){
+        console.error(e);
+        return
+      }
     }
     fetchVideogames()
   }, [])
+  console.log(videogames)
   return (
     <section>
       <h1>All Quizez</h1>
       <ul>
-      {videogames.map((videogame) => {
-        return <li>
+      {videogames.length > 0 && videogames.map((videogame) => (
+        <li>
           <Link href="/quiz/1"> { videogame.name }</Link>
         </li>
-      })}
+      ))}
         <li>
           <Link href="/quiz/2"> Quiz 2</Link>
         </li>
