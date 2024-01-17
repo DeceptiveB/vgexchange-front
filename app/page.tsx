@@ -25,7 +25,6 @@ export default function Home() {
     }
     fetchVideogames()
   }, [])
-  console.log(videogames)
   return (
     <section>
       <h1>All Quizez</h1>

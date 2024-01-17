@@ -1,5 +1,3 @@
-'use server'
-
 import Videogame from "@/models/Videogame";
 
 const FETCH_LIMIT = 8;
