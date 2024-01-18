@@ -1,30 +1,16 @@
-'use client'
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { fetchVideogame } from '../hooks/useVideogame';
+import { fetchVideogame } from '../lib/useVideogame';
 import Videogame from '@/models/Videogame';
 
+const fetchVideogames = async () => {
+  const videogames = await fetchVideogame();
+  return videogames;
+}
 
-
-export default function Home() {
-  const [posts, setPosts] = useState([]);
-  const [videogames, setVideogames] = useState<Videogame[]>([]);
-  console.log("asdfasdf")
-  useEffect(() => {
-    const fetchVideogames = async () => {
-      try{
-        const videogamesList = await fetchVideogame();
-        setVideogames(videogamesList);
-        console.log(videogames)
-      }
-      catch (e: any){
-        console.error(e);
-        return
-      }
-    }
-    fetchVideogames()
-  }, [])
+export default async function Home() {
+  const videogames = await fetchVideogames() as Videogame[];
   return (
     <section>
       <h1>All Quizez</h1>

@@ -1,8 +1,11 @@
+import Videogame from '@/models/Videogame';
 import React from 'react';
 
-const Videogame = () => {
+const Videogame = (videogame: Videogame) => {
   return (
-    <div>Videogame</div>
+    <div>
+      <h1></h1>
+    </div>
   )
 }
 
