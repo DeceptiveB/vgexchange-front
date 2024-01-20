@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { fetchVideogame } from '../lib/useVideogame';
 import Videogame from '@/models/Videogame';
+import VideogameList from '@/components/videogame/VideogameList';
 
 const fetchVideogames = async () => {
   const videogames = await fetchVideogame();
@@ -14,12 +15,9 @@ export default async function Home() {
   return (
     <section>
       <h1>All Quizez</h1>
+      <VideogameList videogames={videogames}></VideogameList>
       <ul>
-      {videogames.length > 0 && videogames.map((videogame) => (
-        <li>
-          <Link href="/quiz/1"> { videogame.name }</Link>
-        </li>
-      ))}
+      
         <li>
           <Link href="/quiz/2"> Quiz 2</Link>
         </li>
